@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scrapper web manager</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap-theme.css' %}"/>
+    <script src="{% static 'jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/navigations.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'styles/basestyles.css' %}"/>
+
+</head>
+<body>
+    {% block header %}
+
+        <header >
+            {% if user.is_authenticated %}
+            <lable>Welcome, {{ user.username }}. </lable>
+                <a href="#"><span class="glyphicon glyphicon-user"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-log-out"></span></a>
+            {% else %}
+             <lable>Welcome, new user. Please log in. </lable>
+                <a href="#">Sign up </a>
+                <a href="#"><span class="glyphicon glyphicon-log-in"></span></a>
+            {% endif %}
+         </header>
+
+    {% endblock %}
+
+
+
+    <nav class="navbar navbar-inverse">
+    {% block nav %}
+        <ul class="nav nav-pills" role="tablist">
+              <li role="presentation" class="active"><a href="/">Main <span class="badge"></span></a></li>
+              <li role="presentation"><a href="/products/">Products <span class="badge"></span></a></li>
+        </ul>
+    {% endblock %}
+    </nav>
+    <article>
+    {% block content %}
+    {% endblock %}
+    </article>
+
+        {% block footer %}
+
+             <footer class="col-md-12 footer">
+                &copy; 2017 Scrapper web manager. All rights reserved.
+             </footer>
+
+        {% endblock %}
+</body>
+</html>
