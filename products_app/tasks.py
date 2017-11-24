@@ -11,7 +11,7 @@ def save_pack(products, prices):
 
 def save_products(products):
     for item in products:
-        models.Product(id=item['id'],
+        models.Product.objects.get_or_create(id=item['id'],
               site_product_id=item['site_product_id'],
               name=item['name'],
               brand=item['brand'],
@@ -19,12 +19,12 @@ def save_products(products):
               description=item['description'],
               url=item['url'],
               site=item['site']
-              ).save()
+              )
 
 
 def save_prices(prices):
     for item in prices:
-        models.Price(id=item['id'],
+        models.Price.objects.get_or_create(id=item['id'],
              site_product_id=item['site_product_id'],
              product_id=item['product_id'],
              size=item['size'],
@@ -32,4 +32,4 @@ def save_prices(prices):
              price=item['price'],
              stock_state=item['stock_state'],
              date=item['date']
-             ).save()
+             )
