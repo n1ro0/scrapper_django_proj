@@ -27,3 +27,6 @@ class ProductsScraperPipeline(object):
         tasks.save_pack.delay(self.products, self.prices)
         self.products = []
         self.prices = []
+
+    def close_spider(self, spider):
+        tasks.save_pack.delay(self.products, self.prices)
